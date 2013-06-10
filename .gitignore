@@ -1,0 +1,4 @@
+*.dat
+semanticdb/*
+auto-save-list/*
+ede-projects.el
