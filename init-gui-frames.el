@@ -5,6 +5,7 @@
 
 (setq inhibit-startup-screen t)
 (setq inhibit-startup-echo-area-message t)
+(setq initial-scratch-message nil)
 
 ;; Scroll bar
 (scroll-bar-mode -1)
@@ -29,7 +30,5 @@
 	(add-to-list 'default-frame-alist (cons 'height height)))))
 
 (toggle-fullscreen)
-
-;; (set-frame-size 132 43)
 
 (provide 'init-gui-frames)

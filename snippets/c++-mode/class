@@ -1,19 +1,18 @@
 # -*- mode: snippet -*-
-# name: class C... {public: C...(); virtual ~C...();} (SHOGUN)
+# name: class C... {...}
 # key: class
 # --
 class C$1
 {
-	public:
+public:
+	/** default constructor */
+	C$1();
 
-		C$1();
+	virtual ~C$1();
 
-		virtual ~C$1();
-
-		virtual const char* get_name() const { return "$1"; }
-
-	protected:
-		$0
-
-	private:
-};
+	/** TODO: insert documentation
+	 *
+	 * @return name $1
+	 */
+	virtual const char* get_name() const { return "$1"; }
+};$0

@@ -1,4 +1,9 @@
+*~
 *.dat
+*.elc
 semanticdb/*
 auto-save-list/*
 ede-projects.el
+srecode-map.el
+.emacs.desktop
+.session
