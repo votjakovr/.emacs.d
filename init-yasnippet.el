@@ -1,10 +1,11 @@
-;;;; init-yasnippet.el - yasnippet config
-
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/yasnippet"))
+;;; init-yasnippet.el --- yasnippet config
+;;; Commentary:
+;;; Code:
 
 (require 'yasnippet)
-(setq yas-snippet-dirs (list (expand-file-name "~/.emacs.d/snippets")
-			     (expand-file-name "~/.emacs.d/ext/yasnippet/snippets")))
+(add-to-list 'yas-snippet-dirs (expand-file-name "~/.emacs.d/snippets"))
 (yas-global-mode 1)
 
 (provide 'init-yasnippet)
+
+;;; init-yasnippet.el ends here

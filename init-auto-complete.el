@@ -1,37 +1,50 @@
-;;;; init-auto-complete.el - auto complete configs
+;;; init-auto-complete.el --- auto complete config
+;;; Commentary:
+;;; Code:
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/auto-complete"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/auto-complete/lib/popup"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/auto-complete/lib/ert"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/auto-complete/lib/fuzzy"))
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/auto-complete-clang"))
-
-;; auto-complete config
 (require 'auto-complete-config)
-(ac-config-default)
 
-(global-set-key "\M-/" 'auto-complete)
+;; don't start auto completion automaticly
+(setq ac-auto-start nil)
 
-;; auto-complete-clang stuff
+;; setup default auto-complete sources
+(setq-default ac-sources '(ac-source-abbrev
+			   ac-source-dictionary
+			   ac-source-words-in-same-mode-buffers))
 
-(require 'auto-complete-clang)
-(setq clang-completion-suppress-error 't)
+(add-hook 'auto-complete-mode-hook 'ac-common-setup)
 
-(setq include-paths
-      (list "/usr/include/c++/4.7"
-	    "/usr/include/x86_64-linux-gnu/c++/4.7/."
-	    "/usr/include/c++/4.7/backward"
-	    "/usr/local/include"
-	    "/usr/include/x86_64-linux-gnu"
-	    "/usr/include"
-	    "/usr/include/clang/3.2/include"
-	    "/usr/include/eigen3"
-	    "/usr/include/atlas"
-	    ;; persional projects includes
-	    (expand-file-name "~/Projects/shogun/src")))
+(global-auto-complete-mode t)
 
-(setq ac-clang-flags
-      (mapcar (lambda (item) (concat "-I" item))
-	      (append include-paths)))
+(global-set-key (kbd "<C-tab>") 'auto-complete)
+
+
+;; setup auto complete for emacs lisp
+(add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
+
+;; setup auto complete for python
+(autoload 'jedi:setup "jedi" nil t)
+(add-hook 'python-mode-hook 'jedi:setup)
+
+;; setup auto complete clang async for c/c++/obective-c
+(require 'auto-complete-clang-async)
+(add-hook 'c-mode-common-hook
+	  (lambda ()
+	    (setq clang-completion-suppress-error t)
+	    (setq ac-clang-cflags (mapcar (lambda (item) (concat "-I" item))
+					  (list "/usr/include/c++/4.7"
+						"/usr/include/x86_64-linux-gnu/c++/4.7/"
+						"/usr/include/c++/4.7/backward"
+						"/usr/local/include"
+						"/usr/include/x86_64-linux-gnu"
+						"/usr/include"
+						"/usr/include/eigen3"
+						"/usr/include/atlas")))
+	    (setq ac-sources '(ac-source-clang-async))
+	    (setq ac-clang-complete-executable "~/.emacs.d/clang-complete")
+	    (ac-clang-launch-completion-process)
+	    (ac-clang-update-cmdlineargs)))
 
 (provide 'init-auto-complete)
+
+;;; init-auto-complete.el ends here

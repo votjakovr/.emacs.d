@@ -1,10 +1,13 @@
-;;;; init.el - emacs configs
+;;; init.el --- emacs configs
+;;; Commentary:
+;;; Code:
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d"))
+(add-to-list 'load-path user-emacs-directory)
 
-(require 'init-cedet)
-(require 'init-yasnippet)
+(require 'init-elpa)
+
 (require 'init-auto-complete)
+(require 'init-yasnippet)
 
 (require 'init-cc)
 (require 'init-emacs-lisp)
@@ -12,18 +15,17 @@
 (require 'init-octave)
 (require 'init-python)
 (require 'init-scheme)
+(require 'init-ruby)
 
 (require 'init-markdown)
-(require 'init-tex)
+(require 'init-latex)
 
 (require 'init-gui-frames)
-(require 'init-desktop)
 (require 'init-theme)
 (require 'init-ido)
 (require 'init-misc)
 
-(require 'init-erc)
-
 (require 'server)
-(unless (server-running-p)
-  (server-start))
+(unless (server-running-p) (server-start))
+
+;;; init.el ends here

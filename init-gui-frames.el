@@ -1,5 +1,8 @@
-;;;; init-gui-frames.el - gui frames config
+;;; init-gui-frames.el --- gui frames config
+;;; Commentary:
+;;; Code:
 
+;; misc configs
 (setq use-file-dialog nil)
 (setq use-dialog-box nil)
 
@@ -7,13 +10,10 @@
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 
-;; Scroll bar
 (scroll-bar-mode -1)
-
-;; Tool bar
 (tool-bar-mode -1)
 
-;; Size of the frame
+;; toogle fullscreen
 (defun toggle-fullscreen ()
   (interactive)
   (if window-system
@@ -23,12 +23,17 @@
 	(x-send-client-message nil 0 nil "_NET_WM_STATE" 32
 			       '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))))
 
-(defun set-frame-size (width height)
-  (if window-system
-      (progn
-	(add-to-list 'default-frame-alist (cons 'width width))
-	(add-to-list 'default-frame-alist (cons 'height height)))))
-
 (toggle-fullscreen)
 
+;; revive.el config
+(autoload 'save-current-configuration "revive" "Save status" t)
+(autoload 'resume "revive" "Resume Emacs" t)
+(autoload 'wipe "revive" "Wipe Emacs" t)
+
+(define-key ctl-x-map "S" 'save-current-configuration)
+(define-key ctl-x-map "F" 'resume)
+(define-key ctl-x-map "K" 'wipe)
+
 (provide 'init-gui-frames)
+
+;;; init-gui-frames.el ends here

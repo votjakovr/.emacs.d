@@ -1,8 +1,9 @@
-;;;; init-theme.el - theme loading config
+;;; init-theme.el --- theme loading config
+;;; Commentary:
+;;; Code:
 
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/ext/color-theme-solarized"))
-
-(require 'color-theme-solarized)
-(color-theme-solarized-dark)
+(load-theme 'solarized-dark t)
 
 (provide 'init-theme)
+
+;;; init-theme.el ends here

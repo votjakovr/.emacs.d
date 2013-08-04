@@ -15,4 +15,5 @@ public:
 	 * @return name $1
 	 */
 	virtual const char* get_name() const { return "$1"; }
-};$0
+};
+$0
