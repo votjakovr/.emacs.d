@@ -4,20 +4,26 @@
 
 ;; c config
 
-(add-hook 'c-mode-hook
-	  (lambda ()
-	    (c-set-style "gnu")
-	    (setq indent-tabs-mode nil)))
+(add-hook 'c-mode-hook (lambda () (c-set-style "gnu")))
 
 ;; c++ config
 
-;; config according The SHOGUN guide for developer
-(defun shogun-c++-mode-hook ()
-  (c-set-style "stroustrup")
-  (setq indent-tabs-mode 1)
-  (setq tab-width 4))
+;; style according the SHOGUN guide for developer and some of the source files
+(c-add-style "shogun"
+	     '("stroustrup"
+	       (indent-tabs-mode . t)
+	       (tab-width . 4)
+	       (c-offsets-alist
+		(innamespace . -)
+		(arglist-intro . ++)
+		(arglist-cont-nonempty . ++)
+		(inher-intro . ++)
+		(member-init-intro . ++))))
 
-(add-hook 'c++-mode-hook 'shogun-c++-mode-hook)
+(add-hook 'c++-mode-hook (lambda () (c-set-style "shogun")))
+
+;; open header with c++ mode enabled
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; cc config
 
