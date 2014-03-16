@@ -4,12 +4,11 @@
 
 (fset 'yes-or-no-p 'y-or-n-p)
 
+(line-number-mode nil)
 (column-number-mode 1)
 (show-paren-mode 1)
-(global-hl-line-mode 1)
 (global-subword-mode 1)
 (autopair-global-mode 1)
-(global-flycheck-mode 1)
 
 ;; set fill column
 (setq-default fill-column 80)
@@ -31,6 +30,13 @@
 
 ;; disable backup files
 (setq make-backup-files nil)
+
+;; dont pause when redisplay
+(setq redisplay-dont-pause t)
+
+;; setup cool buffer naming
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'forward)
 
 (provide 'init-misc)
 

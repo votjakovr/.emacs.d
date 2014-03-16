@@ -25,6 +25,7 @@
 (add-to-list 'iswitchb-buffer-ignore "\\*clang")
 (add-to-list 'iswitchb-buffer-ignore "\\*Help")
 (add-to-list 'iswitchb-buffer-ignore "\\*Disabled Command")
+(add-to-list 'iswitchb-buffer-ignore "\\*epc")
 
 (provide 'init-ido)
 

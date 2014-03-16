@@ -2,7 +2,12 @@
 ;;; Commentary:
 ;;; Code:
 
-(load-theme 'solarized-dark t)
+(require 'color-theme)
+
+(setq color-theme-load-all-themes nil)
+
+(if window-system
+    (load-theme 'monokai t))
 
 (provide 'init-theme)
 

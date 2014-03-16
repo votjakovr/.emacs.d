@@ -9,7 +9,6 @@ This configuration contains support for the following:
 * Octave
 * Python (autocompletion provided by jedi)
 * Scheme/Emacs Lisp
-* Weechat (didn't finished)
 
 ## General requirements ##
 
@@ -30,13 +29,10 @@ This configuration contains support for the following:
 * auto-complete-clang-async
 * autopair
 * cl-lib
-* color-theme-solarized
 * doxymacs
 * fill-column-indicator
-* flycheck
 * glsl-mode
-* ipython
 * jedi
+* monokai-theme
 * revive
 * yasnippet
-* weechat

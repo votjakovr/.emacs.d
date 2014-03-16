@@ -13,11 +13,8 @@
 			   ac-source-words-in-same-mode-buffers))
 
 (add-hook 'auto-complete-mode-hook 'ac-common-setup)
-
 (global-auto-complete-mode t)
-
 (global-set-key (kbd "<C-tab>") 'auto-complete)
-
 
 ;; setup auto complete for emacs lisp
 (add-hook 'emacs-lisp-mode-hook 'ac-emacs-lisp-mode-setup)
@@ -25,6 +22,7 @@
 ;; setup auto complete for python
 (autoload 'jedi:setup "jedi" nil t)
 (add-hook 'python-mode-hook 'jedi:setup)
+(setq jedi:complete-on-dot t)
 
 ;; setup auto complete clang async for c/c++/obective-c
 (require 'auto-complete-clang-async)
