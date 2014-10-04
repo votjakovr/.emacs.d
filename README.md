@@ -32,6 +32,8 @@ This configuration contains support for the following:
 * doxymacs
 * fill-column-indicator
 * glsl-mode
+* yaml-mode
+* markdown-mode
 * jedi
 * monokai-theme
 * revive

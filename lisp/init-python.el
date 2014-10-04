@@ -2,8 +2,11 @@
 ;;; Commentary:
 ;;; Code:
 
+(require 'tramp)
+
 (add-hook 'python-mode-hook
 	  (lambda ()
+	    (setq indent-tabs-mode nil)
     	    (setq tab-width 4)
 
 	    ;; setup minor modes
@@ -13,7 +16,10 @@
 
 	    ;; setup key-bindings
 	    (define-key python-mode-map [return] 'newline-and-indent)
-	    (define-key python-mode-map "\C-m" 'newline-and-indent)))
+	    (define-key python-mode-map "\C-m" 'newline-and-indent)
+	    (define-key python-mode-map "\C-ci" 'ispell-comments-and-strings)
+	    (define-key python-mode-map "\C-cc" 'comment-region)
+	    (define-key python-mode-map "\C-cp" 'pylint)))
 
 (provide 'init-python)
 

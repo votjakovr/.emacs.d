@@ -10,8 +10,11 @@
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
+(when (fboundp 'tool-bar-mode)
+  (tool-bar-mode -1))
+
+(when (fboundp 'set-scroll-bar-mode)
+  (set-scroll-bar-mode nil))
 
 ;; toogle fullscreen
 (defun toggle-fullscreen ()
