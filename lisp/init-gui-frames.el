@@ -14,7 +14,9 @@
   (tool-bar-mode -1))
 
 (when (fboundp 'set-scroll-bar-mode)
-  (set-scroll-bar-mode nil)
+  (set-scroll-bar-mode nil))
+
+(when (fboundp 'set-horizontal-scroll-bar-mode) 
   (set-horizontal-scroll-bar-mode nil))
 
 ;; toogle fullscreen

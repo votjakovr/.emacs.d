@@ -9,9 +9,7 @@
 (setq ac-quick-help-delay 0.5)
 
 ;; setup default auto-complete sources
-(setq-default ac-sources '(ac-source-abbrev
-			   ac-source-dictionary
-			   ac-source-words-in-same-mode-buffers))
+(setq-default ac-sources '(ac-source-dictionary))
 
 (add-hook 'auto-complete-mode-hook 'ac-common-setup)
 (global-auto-complete-mode t)
@@ -38,8 +36,7 @@
 
 (defun c-and-cpp-autocompletion ()
   (setq ac-sources
-	(append '(ac-source-clang ac-source-yasnippet ac-source-c-headers)
-		ac-sources))
+	(append '(ac-source-clang ac-source-c-headers) ac-sources))
   (setq ac-clang-flags
 	(mapcar (lambda (item) (concat "-I" item)) (get-include-dirs))))
 
@@ -49,8 +46,8 @@
 ;; setup auto complete for python
 (require 'jedi)
 
-(autoload 'jedi:setup "jedi" nil t)
 (setq jedi:complete-on-dot t)
+(setq jedi:get-in-function-call-delay 10000000)
 
 ;; method 1
 (defun get-project-root (buf repo-file &optional init-file)
@@ -120,8 +117,13 @@ having the init-file file (e.g., '__init__.py'."
     (when project-root
       (add-args jedi:server-args "--sys-path" project-root))))
 
-(add-hook 'python-mode-hook 'jedi:setup)
-(add-hook 'python-mode-hook 'jedi-config:setup-server-args)
+(defun python-autocompletion ()
+  (setq ac-sources
+	(append '(ac-source-jedi-direct) ac-sources))
+  (jedi:setup)
+  (jedi-config:setup-server-args))
+
+(add-hook 'python-mode-hook 'python-autocompletion)
 
 (provide 'init-auto-complete)
 
