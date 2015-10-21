@@ -11,7 +11,7 @@
 ;; style according the SHOGUN guide for developer and some of the source files
 (c-add-style "shogun"
 	     '("stroustrup"
-	       (indent-tabs-mode . t)
+	       (indent-tabs-mode . nil)
 	       (tab-width . 4)
 	       (c-offsets-alist
 		(innamespace . -)
@@ -21,6 +21,8 @@
 		(member-init-intro . ++))))
 
 (add-hook 'c++-mode-hook (lambda () (c-set-style "shogun")))
+
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 
 ;; cc config
 
@@ -61,7 +63,7 @@ comment."
   (define-key c-mode-base-map [return] 'doxymacs-return)
   (define-key c-mode-base-map "\C-m" 'doxymacs-return))
 
-(add-hook 'c-mode-common-hook 'doxymacs-c-mode-common-hook)
+;; (add-hook 'c-mode-common-hook 'doxymacs-c-mode-common-hook)
 
 (add-hook 'c-mode-common-hook
 	  (lambda ()
